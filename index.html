@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokeapi</title>
+    <link rel="manifest" href="./manifest.json">
+
+    <script type="text/javascript">
+        if ("serviceWorker" in navigator) {
+           navigator.serviceWorker.register("sw.js");
+        }
+     </script>
+</head>
+<body>
+    <header>Pokedex</header>
+    <button id="notifications">Click me!</button>
+    <main class="pokedex-container" id="container">
+        
+    </main>
+
+    
+    <script src="index.js"></script>
+
+    <script src="push-notification.js"></script>
+</body>
+</html>
+
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    header{
+        background: #000;
+        color: #fff;
+        height: 5vh;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 0 20px;
+    }
+    button{
+        background-color: #ED8F72;
+        height: 50px;
+        width: 100px;
+    }
+    main{
+        padding:20px;
+    }
+
+    .pokedex-container{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 25px;
+        justify-content: center;
+        overflow: scroll;
+        height: 90vh;
+    }
+    .card{
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        flex-direction: column;
+        height: 300px;
+        width: 300px;
+        border: 2px solid #ED8F72;
+        border-radius: 10px;
+    }
+    .card p{
+        background-color: #ED8F72;
+        height: 100px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        font-weight: 600;
+        border-radius: 0px 0px 5px 5px;
+        color: #fff;
+    }
+</style>

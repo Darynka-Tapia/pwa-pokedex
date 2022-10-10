@@ -1,0 +1,17 @@
+{
+    "name": "Pokedex API",
+    "short_name": "PWA - Pokedex", 
+    "theme_color": "#ED8F72", 
+    "background_color": "#ED8F72", 
+    "display": "standalone",
+    "orientation": "portrait", 
+    "scope": "./",
+    "start_url": "./", 
+    "icons": [
+        {
+            "src": "./icon.png",
+            "type": "image/png",
+            "sizes": "144x144"
+        }
+    ]
+}
