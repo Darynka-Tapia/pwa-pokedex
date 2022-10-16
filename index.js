@@ -1,5 +1,4 @@
 const URL = 'https://pokeapi.co/api/v2/pokemon';
-// const pokemonList = [];
 async function getAllPokemon (){
     const pokemonList = await 
     fetch(URL)
@@ -36,45 +35,13 @@ function createCard(name, image){
     var pokemonNameContainer = document.createElement("p");
     var pokemonName = document.createTextNode(name); 
     pokemonNameContainer.classList.add('pokemon-name');
+    pokemonNameContainer.setAttribute('id',  `notification-${name}`);
     pokemonNameContainer.appendChild(pokemonName);
     newDiv.appendChild(pokemonNameContainer);
 
     containerDiv.appendChild(newDiv);
 
+    initializeUi(`notification-${name}`, name, image);
 
 }
-/*
-function printPokemonHtml(list){
-    // console.log(list);
-    list.forEach((element) => {
-        console.log(element);
-    }); 
-    list.forEach(element => console.log(element));
-}*/
 getAllPokemon();
-
-
-
-// Notification
-
-/*function randomNotification(){
-    const notifTitle = 'Titulo notificacion';
-    const notifBody = `cuerpo de notificacion.`;
-    const notifImg = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10.png`;
-    const options = {
-      body: notifBody,
-      icon: notifImg,
-    };
-    new Notification(notifTitle, options);
-    randomNotification();
-}
-
-const button = document.getElementById('notifications');
-button.addEventListener('click', () => {
-  Notification.requestPermission().then((result) => {
-    console.log(result);
-    /*if (result === 'granted') {
-      randomNotification();
-    }
-    });
-});*/

@@ -1,13 +1,3 @@
-/*
-const button = document.getElementById('notifications');
-button.addEventListener('click', () => {
-    var notificacion = window.webkitNotifications.createNotification("","Uso de Notification API", "¡Felicidades! Ya has configurado las notificaciones :)");
-    notificacion.show();  
-});
-*/
-//First, we check if having service workers and notifications are //supported.
-
-const notificationButton = document.getElementById('notifications');
 let swRegistration = null;
 function initializeApp() {
     if ('serviceWorker' in navigator && 'PushManager' in window) {
@@ -20,32 +10,32 @@ function initializeApp() {
           console.log('Service Worker is registered', swReg);
           // We are storing the service worker, globally
           swRegistration = swReg;
-          initializeUi();
+          initializeUi('notifications');
         })
         .catch(error => {
           console.error('Service Worker Error', error);
         });
     } else {
       console.warn('Push messaging is not supported');
-      notificationButton.textContent = 'Push Not Supported';
     }
   }
 
   initializeApp();
 
-  function initializeUi() {
+  function initializeUi(idName, pokeName, pokeImage) {
+    const notificationButton = document.getElementById(idName);
     notificationButton.addEventListener('click', () => {
       //Do something here
       console.log('click a notification button');
-      displayNotification();
+      displayNotification(pokeName, pokeImage);
 
     });
   }
 
-  function displayNotification() {
+  function displayNotification(pokeName, pokeImage) {
     //Ask user if we show notifications
     if (window.Notification && Notification.permission === 'granted') {
-      notification();
+      notification(pokeName, pokeImage);
       // We will crete this function in a further step.
     }
     // If the user hasn't told whether he wants to be notified or not
@@ -54,7 +44,7 @@ function initializeApp() {
     else if (window.Notification && Notification.permission !== 'denied') {
       Notification.requestPermission(status => {
         if (status === 'granted') {
-          notification();
+          notification(pokeName, pokeImage);
         } else {
           alert('You denied or dismissed permissions to notifications.');
         }
@@ -67,10 +57,10 @@ function initializeApp() {
     }
   }
 
-  function notification() {
+  function notification(pokeName, pokeImage) {
     const options = {
-      body: 'Testing Our Notification',
-      icon: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10.png'
+      body: `${pokeName} ¡Yo te elijo!`,
+      icon: pokeImage
     };
-    swRegistration.showNotification('PWA Notification!', options);
+    swRegistration.showNotification(`${pokeName} Notification!`, options);
   }
